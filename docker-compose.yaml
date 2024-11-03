@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+    redis:
+        image: redis
+        restart: always
+        ports:
+            - 6170:6379 #PORT Mappings <host_port>:<container_port>
+        deploy:
+          resources:
+            limits:
+              cpus:
+              memory:
+            reservations:
+              cpus:
+              memory:
+        volumes:
+            - data:/data
+        entrypoint: redis-server --appendonly yes
+volumes:
+    data:
+
+networks:
+  default:
+    name: scrape_scheduler_network
